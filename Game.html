@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <script>
+        function getComputerChoice() {
+            let num = Math.random();
+            choice = (num > 0.66) ? "Rock" : (num > 0.33) ? "Paper" : "Scissors";
+            return choice;
+        }
+        function getHumanChoice() {
+            choice = prompt("Choose between Rock, Paper and Scissors");
+            return choice;
+        }
+        let humanScore, computerScore = 0;
+        function playGame() {
+            function playRound(humanChoice, computerChoice) {
+                if (humanChoice != "Rock" && humanChoice != "Paper" && humanChoice != "Scissors") {
+                    alert("Invalid Human Choice");
+                }
+                else {
+                    if (humanChoice == "Rock") {
+                        if (computerChoice == "Paper") {
+                            computerScore++;
+                            alert("Computer Won");
+                            return;
+                        }
+                        else if (computerChoice == "Scissors") {
+                            humanScore++;
+                            alert("Human Won");
+                            return
+                        }
+                        else {
+                            alert("Draw")
+                            return;
+                        }
+                    }
+                    else if (humanChoice == "Paper") {
+                        if (computerChoice == "Paper") {
+                            alert("Draw")
+                            return;
+                        }
+                        else if (computerChoice == "Scissors") {
+                            computerScore++;
+                            alert("Computer Won");
+                            return
+                        }
+                        else {
+                            humanScore++;
+                            alert("Human Won");
+                            return;
+                        }
+                    }
+                    else {
+                        if (computerChoice == "Paper") {
+                            humanScore++;
+                            alert("Human Won");
+                            return;
+                        }
+                        else if (computerChoice == "Scissors") {
+                            alert("Draw")
+                            return;
+
+                        }
+                        else {
+                            computerScore++;
+                            alert("Computer Won");
+                            return
+                        }
+                    }
+                }
+            }
+
+            for (let i = 0; i < 5; i++) {
+                alert(`Round ${i + 1} Starting`);
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+                playRound(humanSelection, computerSelection);
+            }
+            alert(`Final Score: Human: ${humanScore} Computer: ${computerScore} `);
+        }
+        playGame();
+    </script>
+</body>
+
+</html>
